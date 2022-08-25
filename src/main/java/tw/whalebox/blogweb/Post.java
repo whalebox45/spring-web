@@ -19,10 +19,13 @@ public class Post implements Serializable {
     private String title;
     @Column(name = "context")
     private String context;
+    @Column(name = "create_date")
+    private java.sql.Timestamp createDate;
     
     public String getTitle(){return this.title;}
     public String getContext(){return this.context;}
     public long getId(){return this.id;}
+    public String getCreateDateStr() {return this.createDate.toString();}
     
     public Post(){
     }

@@ -20,6 +20,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class BlogPostController {
     @Autowired
     PostRepository postRepo;
+    
+    @GetMapping("/index")
+    public String Index(Model model){
+        var posts = (List<Post>) postRepo.findAll();
+        model.addAttribute("posts",posts);
+        return "index";
+    }
 //    @GetMapping("/post")
 //    public String BlogPost(Model model){
 //        
