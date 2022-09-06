@@ -1,0 +1,12 @@
+[Unit]
+Description=Whale Spring Boot
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=user
+ExecStart=/usr/bin/java -jar /path/to/whale_spring-0.2.jar
+[Install]
+WantedBy=multi-user.target
