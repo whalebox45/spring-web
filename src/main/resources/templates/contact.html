@@ -52,7 +52,33 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        <p>Email: whalebox4.5[at]google[dot]com</p>
+                        <h2>聯絡表單</h2>
+                        <p>歡迎填寫聯絡方式跟留言，我會儘快回覆你的</p>
+                        
+                        <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/>
+                        
+                        <div class="my-5">
+                            <form enctype="application/x-www-form-urlencoded" method="post" 
+                                  th:action="@{/contact_form}" th:object="${newform}" id="contactForm">
+                                <div class="form-floating">
+                                    <input class="form-control" th:field="*{name}" id="name" type="text" placeholder="你的大名" required="required" />
+                                    <label for="name">名字:</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input class="form-control" th:field="*{email}" id="email" type="email" placeholder="Email 地址" required="required"></input>
+                                    <label for="email">Email</label>
+                                </div>
+                                <div class="form-floating">
+                                    <textarea class="form-control" th:field="*{message}" id="message" placeholder="輸入欲留言的內容" required="required"></textarea>
+                                    <label for="message">留言</label>
+                                </div>
+                                <br />
+                                <button class="btn btn-primary" id="submitButton" type="submit">傳送</button>
+                            </form>
+                        </div>
+
+
+                        <p>或者是直接寄 Email 給我<br />whalebox4.5[at]google[dot]com</p>
                     </div>
                 </div>
             </div>

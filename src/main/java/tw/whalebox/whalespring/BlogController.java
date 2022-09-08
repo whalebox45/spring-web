@@ -23,14 +23,5 @@ public class BlogController {
     public String aboutBlog(){
         return "about";
     }
-    
-    @GetMapping("/contact")
-    public String contactBlog(){
-        return "contact";
-    }
-//    @RequestMapping(value = "/ok",method = RequestMethod.POST)
-//    public void ok(){
-//        return;
-//    }
 }
 

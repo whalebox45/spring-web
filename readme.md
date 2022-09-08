@@ -1,7 +1,7 @@
-# 範例
-http://128.199.106.133/index
 # 使用環境
-Java: openjdk-18-jre
+Java: openjdk-18-jre + Maven
+Spring Boot 2.7.3 + Thymeleaf
+SQLite3
 
 # 模板
 Clean Blog: https://startbootstrap.com/theme/clean-blog
@@ -38,19 +38,26 @@ Type=simple
 Restart=always
 RestartSec=1
 User=user
-ExecStart=/usr/bin/java -jar /path/to/whale_spring-0.2.jar
+ExecStart=/usr/bin/java -jar /path/to/whale_spring-0.3.jar
 [Install]
 WantedBy=multi-user.target
 ```
 
 nginx_conf
 ```
+limit_req_zone $binary_remote_addr zone=one:10m rate=10r/s;
+
 server {
+  client_body_timeout 6s;
+  client_header_timeout 6s;
+
   listen 80;
-  server_name _;
+  server_name _; 
 
   location / {
-    proxy_pass http://localhost:8080; 
+
+    limit_req zone=one;
+    proxy_pass http://localhost:8080;
     proxy_set_header Host $http_host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
