@@ -1,6 +1,3 @@
-# 範例
-http://128.199.106.133/index
-
 # 使用環境
 Java: openjdk-18-jre + Maven
 
